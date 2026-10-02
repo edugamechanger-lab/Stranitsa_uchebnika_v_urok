@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Урок из одной страницы</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #FFF7D8;
+  color: #24221D;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: min(100%, 900px);
+  height: min(820px, calc(100vh - 48px));
+  background: #FFFCF2;
+  border: 1px solid #E9D889;
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 12px 40px rgba(90, 70, 0, .08);
+}
+
+.badge {
+  width: fit-content;
+  padding: 7px 11px;
+  background: #FFE36E;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: .98;
+  letter-spacing: -1.5px;
+}
+
+.lead {
+  margin: 0;
+  max-width: 700px;
+  color: #625C47;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.flow {
+  padding: 12px 16px;
+  background: #FFF2B7;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.prompt-box {
+  min-height: 130px;
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  background: #FFFFFF;
+  border: 1px solid #E8DCAC;
+  border-radius: 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  color: #746D57;
+}
+
+.telegram-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 2px;
+}
+
+.telegram-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.telegram-copy strong {
+  font-size: 14px;
+}
+
+.telegram-copy span {
+  font-size: 12px;
+  color: #746D57;
+}
+
+.bottom {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+button, .tg {
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 16px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+button {
+  background: #F0C928;
+  color: #282100;
+}
+
+.tg {
+  background: #28251D;
+  color: #FFFFFF;
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 12px;
+    align-items: stretch;
+  }
+
+  .card {
+    height: calc(100vh - 24px);
+    padding: 18px;
+    border-radius: 20px;
+    gap: 11px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .lead {
+    font-size: 14px;
+  }
+
+  .flow {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .prompt-box {
+    font-size: 12px;
+    padding: 14px;
+  }
+
+  .telegram-block {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .bottom {
+    width: 100%;
+  }
+
+  .bottom button,
+  .bottom .tg {
+    flex: 1;
+    text-align: center;
+    padding: 12px 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+<main class="card">
+
+  <div class="badge">ГОТОВЫЙ ПРОМПТ ДЛЯ УЧИТЕЛЯ</div>
+
+  <h1>Урок из одной страницы</h1>
+
+  <p class="lead">
+    Загрузите фотографию страницы учебника — ИИ превратит ее
+    в готовый сценарий урока от входа в тему до проверки понимания.
+  </p>
+
+  <div class="flow">
+    Страница учебника → объяснение → практика → игра → проверка
+  </div>
+
+  <div class="prompt-box" id="prompt">Ты — опытный методист и учитель-практик. Помоги мне превратить страницу учебника или другой учебный материал в готовый сценарий урока.
+
+Я могу загрузить:
+— фотографию или скриншот страницы учебника;
+— PDF;
+— текст;
+— несколько страниц или материалов.
+
+Сначала внимательно изучи материал. Не придумывай факты, которых в нем нет. Определи тему, ключевые понятия и то, что ученики должны понять или научиться делать.
+
+Если по материалу нельзя надежно определить класс, возраст учеников или продолжительность урока, задай мне только недостающие вопросы. Максимум 3 вопроса за раз. Если данных достаточно — сразу работай.
+
+На основе материала создай урок от начала до конца.
+
+1. Интересное начало урока
+
+Придумай короткий вход в тему на 3–5 минут, который включит учеников в работу: проблемный вопрос, мини-ситуацию, загадку, провокационное утверждение, небольшой эксперимент или другой подходящий прием.
+
+Не раскрывай сразу содержание темы — начало должно вызвать необходимость разобраться.
+
+2. Объяснение
+
+Объясни ключевое содержание материала понятным для этого возраста языком.
+
+Сохрани важные термины и факты из исходного материала, но не пересказывай страницу учебника почти дословно.
+
+Добавь примеры или аналогии, если они действительно помогают понять тему.
+
+3. Работа учеников
+
+Создай задание, в котором ученики должны применить то, что только что разобрали.
+
+Укажи:
+— инструкцию ученику;
+— формат работы: индивидуально / в паре / группе;
+— примерное время;
+— правильный ответ или критерии проверки.
+
+4. Мини-игра на закрепление
+
+Придумай короткую игру по этой же теме.
+
+Игра должна проверять или закреплять знания, а не просто развлекать.
+
+Опиши:
+— цель;
+— правила;
+— что делает учитель;
+— что делают ученики;
+— правильные ответы, если они нужны.
+
+5. Быстрая проверка понимания
+
+Создай exit ticket или другую проверку на 3–5 минут.
+
+Она должна показать не только, запомнили ли ученики информацию, но и поняли ли ключевую идею урока.
+
+В конце собери все части в последовательный сценарий:
+
+начало → объяснение → практика → игра → проверка понимания.
+
+Для каждого этапа укажи примерное время.
+
+Перед выдачей проверь:
+— все ли задания действительно связаны с загруженным материалом;
+— соответствует ли сложность возрасту;
+— можно ли провести урок по получившемуся сценарию без необходимости самостоятельно додумывать задания и инструкции;
+— есть ли ответы или критерии проверки там, где они нужны.</div>
+
+  <p class="hint">
+    Как использовать: загрузите страницу учебника → скопируйте промпт → отправьте его ИИ.
+  </p>
+
+  <div class="telegram-block">
+
+    <div class="telegram-copy">
+      <strong>Еще больше идей — в моем Telegram-канале</strong>
+      <span>Промпты, инструменты и способы использовать ИИ в работе учителя.</span>
+    </div>
+
+    <div class="bottom">
+      <button onclick="copyPrompt(this)">Скопировать промпт</button>
+
+      <a
+        class="tg"
+        href="https://t.me/+rslSMPAjRjE0YzMy"
+        target="_blank"
+        rel="noopener noreferrer">
+        Перейти в Telegram →
+      </a>
+    </div>
+
+  </div>
+
+</main>
+</div>
+
+<script>
+async function copyPrompt(button) {
+  const text = document.getElementById("prompt").innerText;
+
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
+
+  const oldText = button.textContent;
+  button.textContent = "Скопировано ✓";
+
+  setTimeout(() => {
+    button.textContent = oldText;
+  }, 1800);
+}
+</script>
+
+</body>
+</html>

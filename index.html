@@ -292,7 +292,7 @@ button {
 
       <a
         class="tg"
-        href="https://t.me/+rslSMPAjRjE0YzMy"
+        href="https://t.me/+rslSMPAjRjE0YzMy" data-tg
         target="_blank"
         rel="noopener noreferrer">
         Перейти в Telegram →
@@ -328,5 +328,19 @@ async function copyPrompt(button) {
 }
 </script>
 
+<script>
+  /* ===== ССЫЛКИ НА TELEGRAM ПО ПЛОЩАДКАМ =====
+     Таплинк передает площадку в адресе: ...?from=tiktok / insta / youtube
+     Без метки остается ссылка insta. Чтобы добавить площадку, допишите строку. */
+  var TG_LINKS = {
+    insta: 'https://t.me/+rslSMPAjRjE0YzMy',
+    youtube: 'https://t.me/+StpAwj2odQ00YjAy'
+  };
+  (function(){
+    var from = (new URLSearchParams(location.search).get('from') || '').toLowerCase();
+    if (!TG_LINKS[from]) return;
+    document.querySelectorAll('a[data-tg]').forEach(function(a){ a.href = TG_LINKS[from]; });
+  })();
+</script>
 </body>
 </html>
